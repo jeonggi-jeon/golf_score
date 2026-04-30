@@ -975,6 +975,7 @@ h2 {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 10px;
         padding: 8px 12px;
         background: #f5f5f5;
         border-radius: 5px;
@@ -1001,20 +1002,28 @@ h2 {
         text-overflow: ellipsis;
     }
 
+    /* 기록 / 평균 — 두 열 폭 동일, 라벨·숫자 가로 한 줄 */
     .player-stat-info {
-        display: flex;
-        gap: 14px;
-        justify-content: flex-end;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        align-items: center;
         flex-shrink: 0;
-        min-width: min-content;
+        width: 11rem;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     .player-stat-item {
         display: flex;
         flex-direction: row;
-        flex: 0 0 auto;
-        gap: 5px;
+        flex-wrap: nowrap;
+        gap: 4px;
         align-items: center;
+        justify-content: flex-end;
+        min-width: 0;
+        width: 100%;
     }
 
     .player-stat-item-label {
@@ -1022,6 +1031,9 @@ h2 {
         color: #999;
         margin-bottom: 0;
         white-space: nowrap;
+        word-break: keep-all;
+        writing-mode: horizontal-tb;
+        flex-shrink: 0;
     }
 
     .player-stat-item-value {
@@ -1029,6 +1041,8 @@ h2 {
         font-weight: 700;
         color: #667eea;
         white-space: nowrap;
+        flex-shrink: 0;
+        font-variant-numeric: tabular-nums;
     }
 
     /* 스코어 열은 숫자만 필요하므로 고정 폭 → 선수명 열에 남는 폭 전부 사용 */
