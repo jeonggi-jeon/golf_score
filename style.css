@@ -945,7 +945,7 @@ h2 {
     }
 
     .form-header {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     #scoreForm {
@@ -1013,14 +1013,14 @@ h2 {
     }
 
     .players-scores-header {
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 2fr 1fr;
         gap: 10px;
         padding: 10px 0;
         font-size: 0.85em;
     }
 
     .player-score-row {
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 2fr 1fr;
         gap: 10px;
         padding: 5px 8px;
     }
