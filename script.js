@@ -134,7 +134,32 @@ function deletePlayer(firebaseKey) {
         return;
     }
 
-    remove(ref(database, `players/${firebaseKey}`)).catch((error) => {
+    const player = playersMap[firebaseKey];
+    if (!player) {
+        alert('선수 정보를 찾을 수 없습니다.');
+        return;
+    }
+
+    const playerName = player.name;
+    const relatedScores = scores.filter(s => s.playerName === playerName);
+
+    let deleteScoresToo = false;
+    if (relatedScores.length > 0) {
+        deleteScoresToo = confirm(
+            `이 선수의 스코어 기록 ${relatedScores.length}건도 함께 삭제할까요?\n\n` +
+            '확인: 선수와 스코어 기록 모두 삭제\n취소: 선수만 삭제(스코어는 통계에 유지)'
+        );
+    }
+
+    const removes = [];
+    if (deleteScoresToo) {
+        relatedScores.forEach(s => {
+            removes.push(remove(ref(database, `scores/${s.firebaseKey}`)));
+        });
+    }
+    removes.push(remove(ref(database, `players/${firebaseKey}`)));
+
+    Promise.all(removes).catch((error) => {
         alert('삭제 실패: ' + error.message);
     });
 }

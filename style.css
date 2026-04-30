@@ -994,18 +994,25 @@ h2 {
 
     .player-stat-name {
         flex: 1;
+        min-width: 0;
         margin-bottom: 0;
         font-size: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .player-stat-info {
         display: flex;
-        gap: 30px;
+        gap: 14px;
         justify-content: flex-end;
+        flex-shrink: 0;
+        min-width: min-content;
     }
 
     .player-stat-item {
         display: flex;
+        flex-direction: row;
+        flex: 0 0 auto;
         gap: 5px;
         align-items: center;
     }
@@ -1013,12 +1020,15 @@ h2 {
     .player-stat-item-label {
         font-size: 0.75em;
         color: #999;
+        margin-bottom: 0;
+        white-space: nowrap;
     }
 
     .player-stat-item-value {
         font-size: 1em;
         font-weight: 700;
         color: #667eea;
+        white-space: nowrap;
     }
 
     /* 스코어 열은 숫자만 필요하므로 고정 폭 → 선수명 열에 남는 폭 전부 사용 */
