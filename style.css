@@ -150,6 +150,12 @@ h2 {
     border-color: #667eea;
 }
 
+.player-name {
+    font-weight: 500;
+    color: #333;
+    min-width: 0;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -163,6 +169,8 @@ h2 {
 }
 
 .form-group input {
+    width: 100%;
+    min-width: 0;
     padding: 12px;
     border: 2px solid #e0e0e0;
     border-radius: 5px;
@@ -546,6 +554,7 @@ h2 {
 }
 
 .modal-content {
+    position: relative;
     background-color: white;
     padding: 30px;
     border-radius: 10px;
@@ -1012,20 +1021,24 @@ h2 {
         color: #667eea;
     }
 
+    /* 스코어 열은 숫자만 필요하므로 고정 폭 → 선수명 열에 남는 폭 전부 사용 */
     .players-scores-header {
-        grid-template-columns: 2fr 1fr;
-        gap: 10px;
+        grid-template-columns: minmax(0, 1fr) minmax(4.75rem, 5.5rem);
+        gap: 8px;
         padding: 10px 0;
         font-size: 0.85em;
     }
 
     .player-score-row {
-        grid-template-columns: 2fr 1fr;
-        gap: 10px;
+        grid-template-columns: minmax(0, 1fr) minmax(4.75rem, 5.5rem);
+        gap: 8px;
         padding: 5px 8px;
+        align-items: center;
     }
 
     .player-score-row input {
+        width: 100%;
+        min-width: 0;
         padding: 5px 6px;
         font-size: 0.9em;
         height: 28px;
@@ -1082,6 +1095,30 @@ h2 {
         top: 10px;
     }
 
+    /* 단순 헤더 모달(제목 + X): 모바일에서도 제목 왼쪽 · 닫기 오른쪽 */
+    #playerManagementModal .modal-header,
+    #pickPlayerModal .modal-header,
+    #dividedTeamsModal .modal-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    #playerManagementModal .modal-header h2,
+    #pickPlayerModal .modal-header h2,
+    #dividedTeamsModal .modal-header h2 {
+        min-width: 0;
+        flex: 1;
+    }
+
+    #playerManagementModal .modal-close,
+    #pickPlayerModal .modal-close,
+    #dividedTeamsModal .modal-close {
+        position: static;
+        flex-shrink: 0;
+    }
+
     .btn-manage-players {
         padding: 6px 12px;
         font-size: 0.85em;
@@ -1133,5 +1170,49 @@ h2 {
     .btn-confirm-teams {
         font-size: 0.9em;
         padding: 10px 16px;
+    }
+
+    /* 뽑기 결과: 세로 여백 축소로 모바일 스크롤 완화 */
+    #dividedTeamsModal .modal-content {
+        padding: 14px 16px;
+    }
+
+    #dividedTeamsModal .modal-header {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+
+    #dividedTeamsModal .divided-teams-content {
+        gap: 12px;
+    }
+
+    #dividedTeamsModal .teams-container {
+        gap: 10px;
+    }
+
+    #dividedTeamsModal .team-section {
+        padding: 10px;
+    }
+
+    #dividedTeamsModal .team-title {
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+
+    #dividedTeamsModal .team-players-list {
+        gap: 6px;
+    }
+
+    #dividedTeamsModal .team-player-item {
+        padding: 6px 8px;
+    }
+
+    #dividedTeamsModal .teams-actions {
+        gap: 8px;
+    }
+
+    #dividedTeamsModal .btn-redraw,
+    #dividedTeamsModal .btn-confirm-teams {
+        padding: 8px 12px;
     }
 }
