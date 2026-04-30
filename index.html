@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>골프 스코어 기록</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⛳ 골프 스코어 기록</h1>
+
+        <div class="input-section">
+            <div class="section-header">
+                <h2>새로운 기록 추가</h2>
+                <div class="section-header-buttons">
+                    <button type="button" class="btn-manage-players" onclick="openPlayerManagementModal()">선수 관리</button>
+                    <button type="button" class="btn-pick-player" onclick="pickRandomPlayer()">🎲 뽑기</button>
+                </div>
+            </div>
+            <form id="scoreForm">
+                <div class="form-header">
+                    <div class="form-group">
+                        <label for="scoreDate">날짜</label>
+                        <input type="date" id="scoreDate" tabindex="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">코스</label>
+                        <input type="text" id="course" placeholder="코스명 입력" tabindex="2" required>
+                    </div>
+                </div>
+
+                <div class="players-scores-section">
+                    <div class="players-scores-header">
+                        <div class="player-col">선수명</div>
+                        <div class="score-col">스코어</div>
+                    </div>
+                    <div id="playersScoresContainer" class="players-scores-list">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">기록 추가</button>
+            </form>
+        </div>
+
+        <div class="stats-section">
+            <h2>선수별 통계</h2>
+            <div id="playerStatsContainer" class="player-stats-grid">
+                <p class="empty-message">아직 기록이 없습니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalPlayerName"></h2>
+                    <div id="modalPlayerStats" class="modal-player-stats"></div>
+                </div>
+                <button class="modal-close" onclick="closePlayerModal()">&times;</button>
+            </div>
+            <div id="modalRecordsList" class="modal-records-list">
+            </div>
+        </div>
+    </div>
+
+    <div id="playerManagementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>선수 관리</h2>
+                <button class="modal-close" onclick="closePlayerManagementModal()">&times;</button>
+            </div>
+            <div class="player-management-content">
+                <div class="add-player-section">
+                    <input type="text" id="newPlayerInput" placeholder="새 선수명 입력" />
+                    <button class="btn-add-player" onclick="addNewPlayer()">추가</button>
+                </div>
+                <div id="playersList" class="players-list">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pickPlayerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>선수 선택</h2>
+                <button class="modal-close" onclick="closePickPlayerModal()">&times;</button>
+            </div>
+            <div class="pick-player-content">
+                <div id="pickPlayersList" class="pick-players-list">
+                </div>
+                <div class="pick-player-actions">
+                    <button class="btn-pick-confirm" onclick="confirmPickPlayer()">🎲 운명의 뽑기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dividedTeamsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎲 뽑기 결과</h2>
+                <button class="modal-close" onclick="closeDividedTeamsModal()">&times;</button>
+            </div>
+            <div class="divided-teams-content">
+                <div class="teams-container" id="teamsContainer">
+                    <div class="team-section team-red">
+                        <h3 class="team-title">🔴 팀 1</h3>
+                        <div id="team1Players" class="team-players-list">
+                        </div>
+                    </div>
+                    <div class="team-section team-blue">
+                        <h3 class="team-title">🔵 팀 2</h3>
+                        <div id="team2Players" class="team-players-list">
+                        </div>
+                    </div>
+                    <div class="team-section team-joker" id="jokerSection" style="display: none;">
+                        <h3 class="team-title">🃏 조커</h3>
+                        <div id="jokerPlayer" class="team-players-list">
+                        </div>
+                    </div>
+                </div>
+                <div class="teams-actions">
+                    <button class="btn-redraw" onclick="confirmPickPlayer()">🔄 다시 뽑기</button>
+                    <button class="btn-confirm-teams" onclick="closeDividedTeamsModal()">완료</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

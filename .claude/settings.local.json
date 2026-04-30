@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls *)",
+      "Bash(cd /d D:\\\\workspace\\\\golf_score)",
+      "Bash(python -m http.server 8000)"
+    ]
+  }
+}
